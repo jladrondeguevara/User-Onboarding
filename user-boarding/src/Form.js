@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 
 export default function Form () {
     const [formState, setFormState] = useState({
-        name: ""
+        name: "",
+        email: "",
+        password: ""
     });
     const formSubmit = event => {
         event.preventDefault();
@@ -17,7 +19,19 @@ export default function Form () {
                 Name 
                 <input id="name" type="text" name="name" onChange={inputChange} value={formState.name} />
             </label>
-
+            <label htmlFor="email">
+                Email
+                <input id="email" type="text" name="email" value={formState.email} />
+            </label>
+            <label htmlFor="password">
+                Password
+                <input id="password" type="password" name="password" value={formState.password} />
+            </label>
+            <label htmlFor="terms" className="terms">
+                Terms and Conditions
+                <input type="checkbox" name="terms" checked={true} />
+            </label>
+            <button>Submit</button>
         </form>
     );
 };
