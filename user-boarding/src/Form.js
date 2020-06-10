@@ -10,8 +10,18 @@ export default function Form () {
         password: "",
         terms: true
     });
+
+    const [users, setUsers] = useState();
+
     const formSubmit = event => {
         event.preventDefault();
+        axios
+            .post("https://reqres.in/api/users", formState)
+            .then(response => {
+                // console.log("axios success!");
+                setUsers(response.data);
+            })
+            .catch(err => console.log("error!"))
     };
 
     const validateChange = event => {
@@ -83,6 +93,7 @@ export default function Form () {
                 {errors.terms.length > 0 ? <p className="error">{errors.terms}</p> : null}
             </label>
             <button type="submit" disabled={buttonDisabled}>Submit</button>
+            <pre>{JSON.stringify(users, null, 2)}</pre>
         </form>
     );
 };
